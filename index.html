@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+	<head>
+		<!--General-->
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" HREF="images/proven.jpeg"/>
+		<title>Test: first stpes with Java Script</title>
+		<meta name="description" content="Test module MF6">
+		<meta name="author" content="Robert Plana">
+
+		<!--css-->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+
+		<!--Frameworks-->
+
+		<!--<script src="http://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript" xml:space="preserve"></script>-->
+		<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript" xml:space="preserve"></script>
+
+		<!--Own code-->
+    <script src="js/control/index.js" type="text/javascript" xml:space="preserve"></script>
+
+	</head>
+	<body>
+		<img src="images/proven.jpeg" id="logoImg"/>
+		<div class="container" id="title">
+			<nav class="navbar navbar-default" role="navigation">
+						<span class="navbar-brand" id="title">Test NF2 Javascript objects, Frames and Windows</span>
+			</nav>
+		</div>
+		<div class="col-md-4" id="mainMenu">
+			<label class="control-label">Currency Change<input class="form-control" type="radio" id="currencyChangeSelect" name="action" value ="currencyChange"></label>
+			<label class="control-label">Calculator<input class="form-control" type="radio" id="calculatorSelect" name="action" value ="calculator" ></label>
+			<label class="control-label">Open Window<input class="form-control" type="radio" id="windowManagementSelect" name="action" value ="windowManagement" ></label>
+		</div>
+		<div id="currencyChange" class="col-md-4">
+			<b>Select the first currency</b>
+			<select class="form-control" id="firstCurrency">
+					<option  value="euro">Euros</option>
+					<option  value="dollar">Dollars</option>
+					<option  value="pound">Pounds</option>
+			</select>
+			<br>
+			<b>Select the first currency</b>
+			<select class="form-control" id="secondCurrency">
+					<option  value="euro">Euros</option>
+					<option  value="dollar">Dollars</option>
+					<option  value="pound">Pounds</option>
+			</select>
+			<br>
+			<b>Introduce the amount of money you want to change:</b>
+			<input class="form-control" type="text" size="5" id="amount"></input>
+			<button type="button" class="btn-success">Change</button>
+		</div>
+		<div id="calculator" class="col-md-4">Calculator</div>
+		<div id="windowManagement" class="col-md-4">Window Management</div>
+	</body>
+</html>
