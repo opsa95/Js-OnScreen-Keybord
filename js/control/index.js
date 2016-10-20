@@ -85,8 +85,8 @@ function keyboardGenerator(){
 	var capsLock = false;
 
 	// Creating the keyboard...
-	keyboardContent += '<input type ="text" id="output" readonly/><br/>';
-	
+	//keyboardContent += '<input type ="text" id="output" readonly/><br/>';
+	keyboardContent += '<textarea rows="4" cols="50" id="output"> </textarea><br/>';
 	for (var i=0;i<keyboardButtons.length;i++){
 		keyboardContent += '<button type ="button" id="btn-success" class="btn-success keyboardButton">'+keyboardButtons[i]+'</button>';
 		if (keyboardButtons[i]=="Del"||keyboardButtons[i]=="ñ"){
@@ -112,16 +112,16 @@ function keyboardGenerator(){
  				else caps = false;
 
 		} else if ($(this).html()=="Del"){ // Pressing the Del button...
-			var getOutput = $("#output").val();
+			var getOutput = $("#output").html();
 			var newOutput = getOutput.substr(0,getOutput.length-1);
-			$("#output").val(newOutput);
+			$("#output").html(newOutput);
 
 		} else{	// If it's a letter...
 			if (!caps){
-				$("#output").val($("#output").val() + inputed);
+				$("#output").html($("#output").html() + inputed);
 				if(capsLock) caps=true;
 			} else {
-				$("#output").val($("#output").val() + inputed.toUpperCase());
+				$("#output").html($("#output").html() + inputed.toUpperCase());
 				if (!capsLock) caps=false;
 			}
 
