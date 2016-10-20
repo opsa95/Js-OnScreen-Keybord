@@ -68,7 +68,7 @@ function nth (d){
  *	@date 19-09-16
  *	@version 1.0
  *	@author David Oporto i Sala
- *	@description This function shows the keyboard div. Then creates an output textbox and
+ *	@description This function shows the keyboard div. Then creates a textarea and
  *	the keyboard (all the qwerty letters + CapsLock, Shift and Del). After
  *	creating the keybord it can check which kind of button you have pressed
  *	if it's a letter will print it onto the output textbox, if it's del will
@@ -80,16 +80,15 @@ function nth (d){
 function keyboardGenerator(){
 	$("#keyboard").show();
 	var keyboardContent="";
-	var keyboardButtons=["q","w","e","r","t","y","u","i","o","p","Del","CapsLock","a","s","d","f","g","h","j","k","l","ñ","Shift","z","x","c","v","b","n","m"];
+	var keyboardButtons=["q","w","e","r","t","y","u","i","o","p","del","capslock","a","s","d","f","g","h","j","k","l","ñ","shift","z","x","c","v","b","n","m","&nbsp;"];
 	var caps = false;
 	var capsLock = false;
 
 	// Creating the keyboard...
-	//keyboardContent += '<input type ="text" id="output" readonly/><br/>';
 	keyboardContent += '<textarea rows="4" cols="50" id="output"> </textarea><br/>';
 	for (var i=0;i<keyboardButtons.length;i++){
 		keyboardContent += '<button type ="button" id="btn-success" class="btn-success keyboardButton">'+keyboardButtons[i]+'</button>';
-		if (keyboardButtons[i]=="Del"||keyboardButtons[i]=="ñ"){
+		if (keyboardButtons[i]=="del"||keyboardButtons[i]=="ñ"||keyboardButtons[i]=="m"){
 			keyboardContent += '<br />';
 		}
 	}
@@ -98,7 +97,7 @@ function keyboardGenerator(){
 	// When you press a button...
 	$(".keyboardButton").click(function(){
 		var inputed = $(this).html();
-    if($(this).html()=="CapsLock"){	// Pressing the CapsLock button...
+    if($(this).html().toUpperCase()=="CAPSLOCK"){	// Pressing the CapsLock button
 				if (!capsLock){
 					caps = true;
 					capsLock = true;
@@ -107,11 +106,29 @@ function keyboardGenerator(){
 					caps = false;
 				}
 
-    } else if ($(this).html()=="Shift"){ // Pressing the Shift button...
-				if (!capsLock) caps = true;
- 				else caps = false;
+				$( ".keyboardButton" ).each(function() {
+					if (caps)
+					// We change all the buttons to upper case...
+						$(this).html($(this).html().toUpperCase());
+					else if (!caps)
+					// We change all the buttons to upper case...
+						$(this).html($(this).html().toLowerCase());
+					});
 
-		} else if ($(this).html()=="Del"){ // Pressing the Del button...
+    } else if ($(this).html().toUpperCase()=="SHIFT" ){ // Pressing the Shift button...
+				if (!capsLock || !caps) caps = true;
+ 				else 	if (capsLock || caps) caps = false;
+
+				$( ".keyboardButton" ).each(function() {
+					if (caps)
+					// We change all the buttons to upper case...
+						$(this).html($(this).html().toUpperCase());
+					else if (!caps)
+					// We change all the buttons to upper case...
+						$(this).html($(this).html().toLowerCase());
+					});
+
+		} else if ($(this).html().toUpperCase()=="DEL"){ // Pressing the Del button
 			var getOutput = $("#output").html();
 			var newOutput = getOutput.substr(0,getOutput.length-1);
 			$("#output").html(newOutput);
@@ -119,11 +136,25 @@ function keyboardGenerator(){
 		} else{	// If it's a letter...
 			if (!caps){
 				$("#output").html($("#output").html() + inputed);
-				if(capsLock) caps=true;
+				if(capsLock) {
+				caps=true;
+				$( ".keyboardButton" ).each(function() {
+					// We change all the buttons to upper case...
+						$(this).html($(this).html().toUpperCase());
+					});
+				}
 			} else {
 				$("#output").html($("#output").html() + inputed.toUpperCase());
-				if (!capsLock) caps=false;
+				if (!capsLock) {
+					caps=false;
+					$( ".keyboardButton" ).each(function() {
+						// We change all the buttons to upper case...
+							$(this).html($(this).html().toLowerCase());
+						});
+
+				}
 			}
+
 
     }
 
