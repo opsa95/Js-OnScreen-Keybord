@@ -34,7 +34,7 @@ function generateDate(){
   var dayIndex = date.getDay();
   var monthDate = ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"];
   var yearDate = date.getFullYear();
-
+	dateContent += '<h3>David Oporto i Sala. OnScreenKeyboard</h2>';
   dateContent += '<div>'+'Today is: '+dayName[dayIndex]+' '+dayDate+nth(dayDate)
   +' of '+ monthDate[date.getMonth()]+ ' '+yearDate;
 
