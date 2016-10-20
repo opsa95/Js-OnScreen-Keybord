@@ -1,7 +1,7 @@
 /**
 
  *	@author David Oporto i Sala
- *	@version 1.0
+ *	@version 1.2
  *	@description jQuery program that generates an on screen keyboard, a clock
  *	and prints the date
  */
@@ -65,8 +65,8 @@ function nth (d){
 
 /**
  *	@name keyboardGenerator
- *	@date 19-09-16
- *	@version 1.0
+ *	@date 20-09-16
+ *	@version 1.2
  *	@author David Oporto i Sala
  *	@description This function shows the keyboard div. Then creates a textarea and
  *	the keyboard (all the qwerty letters + CapsLock, Shift and Del). After
@@ -74,13 +74,14 @@ function nth (d){
  *	if it's a letter will print it onto the output textbox, if it's del will
  *	erase the last character of the output, the shift button makes the next letter
  *	inserted an upcase. The capsLock makes every letter in upcase until it's pressed again (disabled).
+ *	It's also changed in the keyboard, not only in the output
  *	@param none
  *	@return none
 */
 function keyboardGenerator(){
 	$("#keyboard").show();
 	var keyboardContent="";
-	var keyboardButtons=["q","w","e","r","t","y","u","i","o","p","del","capslock","a","s","d","f","g","h","j","k","l","ñ","shift","z","x","c","v","b","n","m","&nbsp;"];
+	var keyboardButtons=["q","w","e","r","t","y","u","i","o","p","del","capslock","a","s","d","f","g","h","j","k","l","ñ","shift","z","x","c","v","b","n","m","space"];
 	var caps = false;
 	var capsLock = false;
 
@@ -133,6 +134,10 @@ function keyboardGenerator(){
 			var newOutput = getOutput.substr(0,getOutput.length-1);
 			$("#output").html(newOutput);
 
+		} else if ($(this).html().toUpperCase()=="SPACE"){ // Pressing the Del button
+			$("#output").html($("#output").html() + " ");
+
+
 		} else{	// If it's a letter...
 			if (!caps){
 				$("#output").html($("#output").html() + inputed);
@@ -151,13 +156,8 @@ function keyboardGenerator(){
 						// We change all the buttons to upper case...
 							$(this).html($(this).html().toLowerCase());
 						});
-
 				}
 			}
-
-
     }
-
   });
-
 }
