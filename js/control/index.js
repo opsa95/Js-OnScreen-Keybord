@@ -21,7 +21,8 @@ $(document).ready(function() {
  *	day, the name of the month, and the year. Then it prints the string on screen.
  *	Also generates a digital clock which it's updated each second,
  *	showing the actual time of the client's computer.
- *	@params: none
+ *	@param none
+  * @return none
  */
 function generateDate(){
 	$("#date").show();
@@ -49,7 +50,8 @@ function generateDate(){
  *	@author Rubén Arroyo
  *	@description This function generates the letters before the day depending on which day of
  *	the week i has been inputed.
- *	@params: Day of the week that we get from the upper function
+ *	@param Day of the week that we get from the upper function
+ *	@return none
  */
 function nth (d){
   if(d>3 && d<21) return 'th';
@@ -72,7 +74,8 @@ function nth (d){
  *	if it's a letter will print it onto the output textbox, if it's del will
  *	erase the last character of the output, the shift button makes the next letter
  *	inserted an upcase. The capsLock makes every letter in upcase until it's pressed again (disabled).
- *	@params: none
+ *	@param none
+ *	@return none
 */
 function keyboardGenerator(){
 	$("#keyboard").show();
@@ -83,6 +86,7 @@ function keyboardGenerator(){
 
 	// Creating the keyboard...
 	keyboardContent += '<input type ="text" id="output" readonly/><br/>';
+	
 	for (var i=0;i<keyboardButtons.length;i++){
 		keyboardContent += '<button type ="button" id="btn-success" class="btn-success keyboardButton">'+keyboardButtons[i]+'</button>';
 		if (keyboardButtons[i]=="Del"||keyboardButtons[i]=="ñ"){
